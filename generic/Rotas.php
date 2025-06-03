@@ -32,6 +32,18 @@ class Rotas
                 Acao::GET => new Endpoint("Tag", "listarId"),
                 Acao::PUT => new Endpoint("Tag", "alterar"),
                 Acao::DELETE => new Endpoint("Tag", "excluir")
+            ]),
+            "interpretacoes" => new Acao([
+                Acao::GET => new Endpoint("Interpretacao", "listar"),
+                Acao::POST => new Endpoint("Interpretacao", "inserir")
+            ]),
+            "interpretacoes/{id}" => new Acao([
+                Acao::GET => new Endpoint("Interpretacao", "listarId"),
+                Acao::PUT => new Endpoint("Interpretacao", "alterar"),
+                Acao::DELETE => new Endpoint("Interpretacao", "excluir")
+            ]),
+            "sonhos/{id}/interpretacoes" => new Acao([
+                Acao::GET => new Endpoint("Interpretacao", "listarPorSonho")
             ])
         ];
     }

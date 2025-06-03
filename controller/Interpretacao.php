@@ -21,8 +21,8 @@ class Interpretacao extends Controller {
         $this->retornar($retorno);
     }
 
-    public function listarPorSonho($sonho_id) {
-        $retorno = $this->service->listarPorSonho($sonho_id);
+    public function listarPorSonho($id) {
+        $retorno = $this->service->listarPorSonho($id);
         $this->retornar($retorno);
     }
 

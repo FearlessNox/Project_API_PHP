@@ -14,12 +14,12 @@ class InterpretacaoDAO extends MysqlFactory implements IInterpretacaoDAO {
         return $this->banco->executar($sql);
     }
 
-    public function listarPorSonho($sonho_id) {
+    public function listarPorSonho($id) {
         $sql = "SELECT id, sonho_id, interpretador, texto, criado_em 
                 FROM interpretacoes 
-                WHERE sonho_id = :sonho_id 
+                WHERE sonho_id = :id 
                 ORDER BY criado_em DESC";
-        $param = [":sonho_id" => $sonho_id];
+        $param = [":id" => $id];
         return $this->banco->executar($sql, $param);
     }
 

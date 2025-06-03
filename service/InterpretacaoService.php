@@ -18,8 +18,8 @@ class InterpretacaoService {
         return $this->dao->listarId($id);
     }
 
-    public function listarPorSonho($sonho_id) {
-        return $this->dao->listarPorSonho($sonho_id);
+    public function listarPorSonho($id) {
+        return $this->dao->listarPorSonho($id);
     }
 
     public function inserir($sonho_id, $interpretador, $texto) {

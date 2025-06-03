@@ -14,11 +14,18 @@ class Acao
     const DELETE = "DELETE";
 
     private $endpoint;
+    private $parametrosUrl;
 
-    public function __construct($endpoint = [])
+    public function __construct($endpoint = [], $parametrosUrl = [])
     {
        
         $this->endpoint = $endpoint;
+        $this->parametrosUrl = $parametrosUrl;
+    }
+
+    public function getEndpoint()
+    {
+        return $this->endpoint;
     }
 
     public function executar()
@@ -35,10 +42,18 @@ class Acao
                 foreach($parametros as $v){
                         $name = $v->getName();
                       
-                        if(!isset($returnParam[$name])){
+                        // Verifica se o parâmetro existe na URL
+                        if (isset($this->parametrosUrl[$name])) {
+                            $para[$name] = $this->parametrosUrl[$name];
+                        }
+                        // Se não existe na URL, verifica nos outros métodos
+                        else if (isset($returnParam[$name])) {
+                            $para[$name] = $returnParam[$name];
+                        }
+                        // Se o parâmetro é obrigatório e não foi encontrado
+                        else if (!$v->isOptional()) {
                             return false;
                         }
-                        $para[$name] = $returnParam[$name];
                 }
                 //pegar todos os parametros passado pelo endpoint
               return $reflectMetodo->invokeArgs(new $end->classe(),$para);

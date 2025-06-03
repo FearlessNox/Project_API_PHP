@@ -10,40 +10,40 @@ class Rotas
     {
         // rotas para o acesso as chamadas
         $this->endpoints = [
-            "sonhos" => new Acao([
-                Acao::GET => new Endpoint("Sonho", "listar"),
-                Acao::POST => new Endpoint("Sonho", "inserir")
-            ]),
-            "sonhos/{id}" => new Acao([
-                Acao::GET => new Endpoint("Sonho", "listarId"),
-                Acao::PUT => new Endpoint("Sonho", "alterar"),
-                Acao::DELETE => new Endpoint("Sonho", "excluir")
+            "sonhos/{id}/interpretacoes" => new Acao([
+                Acao::GET => new Endpoint("Interpretacao", "listarPorSonho")
             ]),
             "sonhos/{id}/tags" => new Acao([
                 Acao::GET => new Endpoint("Sonho", "listarTags"),
                 Acao::POST => new Endpoint("Sonho", "adicionarTag"),
                 Acao::DELETE => new Endpoint("Sonho", "removerTag")
             ]),
-            "tags" => new Acao([
-                Acao::GET => new Endpoint("Tag", "listar"),
-                Acao::POST => new Endpoint("Tag", "inserir")
+            "sonhos/{id}" => new Acao([
+                Acao::GET => new Endpoint("Sonho", "listarId"),
+                Acao::PUT => new Endpoint("Sonho", "alterar"),
+                Acao::DELETE => new Endpoint("Sonho", "excluir")
             ]),
-            "tags/{id}" => new Acao([
-                Acao::GET => new Endpoint("Tag", "listarId"),
-                Acao::PUT => new Endpoint("Tag", "alterar"),
-                Acao::DELETE => new Endpoint("Tag", "excluir")
-            ]),
-            "interpretacoes" => new Acao([
-                Acao::GET => new Endpoint("Interpretacao", "listar"),
-                Acao::POST => new Endpoint("Interpretacao", "inserir")
+            "sonhos" => new Acao([
+                Acao::GET => new Endpoint("Sonho", "listar"),
+                Acao::POST => new Endpoint("Sonho", "inserir")
             ]),
             "interpretacoes/{id}" => new Acao([
                 Acao::GET => new Endpoint("Interpretacao", "listarId"),
                 Acao::PUT => new Endpoint("Interpretacao", "alterar"),
                 Acao::DELETE => new Endpoint("Interpretacao", "excluir")
             ]),
-            "sonhos/{id}/interpretacoes" => new Acao([
-                Acao::GET => new Endpoint("Interpretacao", "listarPorSonho")
+            "interpretacoes" => new Acao([
+                Acao::GET => new Endpoint("Interpretacao", "listar"),
+                Acao::POST => new Endpoint("Interpretacao", "inserir")
+            ]),
+            "tags/{id}" => new Acao([
+                Acao::GET => new Endpoint("Tag", "listarId"),
+                Acao::PUT => new Endpoint("Tag", "alterar"),
+                Acao::DELETE => new Endpoint("Tag", "excluir")
+            ]),
+            "tags" => new Acao([
+                Acao::GET => new Endpoint("Tag", "listar"),
+                Acao::POST => new Endpoint("Tag", "inserir")
             ])
         ];
     }

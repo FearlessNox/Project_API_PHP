@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "fa47098a-9988-4386-9057-07c235661a2d",
+		"name": "PHP_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41408765"
+	},
+	"item": [
+		{
+			"name": "Sonhos",
+			"item": [
+				{
+					"name": "Sonhos/id",
+					"item": [
+						{
+							"name": "Sonhos/id/tags",
+							"item": [
+								{
+									"name": "sonhos/id/tags",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"tag_id\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PHP}}sonhos/1/tags",
+											"host": [
+												"{{PHP}}sonhos"
+											],
+											"path": [
+												"1",
+												"tags"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "sonhos/id/tags",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{PHP}}sonhos/1/tags",
+											"host": [
+												"{{PHP}}sonhos"
+											],
+											"path": [
+												"1",
+												"tags"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Sonhos/id/interpretacoes",
+							"item": [
+								{
+									"name": "sonhos/id/interpretacoes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{PHP}}sonhos/2/interpretacoes",
+											"host": [
+												"{{PHP}}sonhos"
+											],
+											"path": [
+												"2",
+												"interpretacoes"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "sonhos/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{PHP}}sonhos/1",
+									"host": [
+										"{{PHP}}sonhos"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sonhos/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{PHP}}sonhos/3",
+									"host": [
+										"{{PHP}}sonhos"
+									],
+									"path": [
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sonhos/id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"conteudo\": \"Sonhei que estava voando sobre o oceano1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PHP}}sonhos/2",
+									"host": [
+										"{{PHP}}sonhos"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PHP}}sonhos",
+							"host": [
+								"{{PHP}}sonhos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inserir",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"conteudo\": \"Patrik de pitanga!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PHP}}sonhos",
+							"host": [
+								"{{PHP}}sonhos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "tags",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Sonhos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PHP}}tags",
+							"host": [
+								"{{PHP}}tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags/id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Sonhos Lucidos!!!!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PHP}}tags/1",
+							"host": [
+								"{{PHP}}tags"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PHP}}tags",
+							"host": [
+								"{{PHP}}tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PHP}}tags/1",
+							"host": [
+								"{{PHP}}tags"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags/id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PHP}}tags/3",
+							"host": [
+								"{{PHP}}tags"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Interpretacoes",
+			"item": [
+				{
+					"name": "Interpretacoes/id",
+					"item": [
+						{
+							"name": "interpretacoes/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{PHP}}interpretacoes/7",
+									"host": [
+										"{{PHP}}interpretacoes"
+									],
+									"path": [
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "interpretacoes/id Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{PHP}}interpretacoes/6",
+									"host": [
+										"{{PHP}}interpretacoes"
+									],
+									"path": [
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "interpretacoes/id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"interpretador\": \"Dr. Silva\",\r\n    \"texto\": \"Testando sonho\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PHP}}interpretacoes/7",
+									"host": [
+										"{{PHP}}interpretacoes"
+									],
+									"path": [
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "interpretacoes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sonho_id\": 2,\r\n    \"interpretador\": \"Dr. Silva\",\r\n    \"texto\": \"Este sonho representa uma busca por conhecimento e crescimento pessoal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PHP}}interpretacoes",
+							"host": [
+								"{{PHP}}interpretacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "interpretacoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PHP}}interpretacoes",
+							"host": [
+								"{{PHP}}interpretacoes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

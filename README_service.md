@@ -11,6 +11,158 @@ service/
 └── InterpretacaoService.php  # Serviços relacionados a interpretações
 ```
 
+## Funcionamento dos Serviços
+
+### SonhoService.php
+Responsável por gerenciar todas as operações relacionadas a sonhos.
+
+#### Funcionalidades Principais:
+1. **Gerenciamento de Sonhos**
+   - Criação de novos sonhos
+   - Atualização de sonhos existentes
+   - Exclusão de sonhos
+   - Listagem de sonhos
+   - Busca de sonho por ID
+
+2. **Associação com Tags**
+   - Adição de tags a sonhos
+   - Remoção de tags de sonhos
+   - Listagem de tags de um sonho
+
+3. **Validações Específicas**
+   - Verificação de conteúdo obrigatório
+   - Validação de datas
+   - Verificação de existência de sonho
+
+### TagService.php
+Gerencia todas as operações relacionadas às tags do sistema.
+
+#### Funcionalidades Principais:
+1. **Gerenciamento de Tags**
+   - Criação de novas tags
+   - Atualização de tags existentes
+   - Exclusão de tags
+   - Listagem de todas as tags
+   - Busca de tag por ID
+
+2. **Validações Específicas**
+   - Verificação de nome único
+   - Validação de formato
+   - Verificação de uso em sonhos
+
+3. **Operações de Associação**
+   - Verificação de associações existentes
+   - Gerenciamento de relacionamentos
+   - Limpeza de associações
+
+### InterpretacaoService.php
+Controla todas as operações relacionadas às interpretações de sonhos.
+
+#### Funcionalidades Principais:
+1. **Gerenciamento de Interpretações**
+   - Criação de novas interpretações
+   - Atualização de interpretações
+   - Exclusão de interpretações
+   - Listagem de interpretações
+   - Busca por ID
+
+2. **Relacionamentos**
+   - Vinculação com sonhos
+   - Busca de interpretações por sonho
+   - Gerenciamento de múltiplas interpretações
+
+3. **Validações Específicas**
+   - Verificação de campos obrigatórios
+   - Validação de interpretador
+   - Verificação de sonho existente
+
+## Exemplos de Implementação por Serviço
+
+### SonhoService
+```php
+class SonhoService {
+    // Operações CRUD básicas
+    public function inserir($conteudo) { ... }
+    public function alterar($id, $conteudo) { ... }
+    public function excluir($id) { ... }
+    public function listar() { ... }
+    public function listarId($id) { ... }
+    
+    // Operações com tags
+    public function listarTags($id) { ... }
+    public function adicionarTag($id, $tagId) { ... }
+    public function removerTag($id, $tagId) { ... }
+}
+```
+
+### TagService
+```php
+class TagService {
+    // Operações CRUD básicas
+    public function inserir($nome) { ... }
+    public function alterar($id, $nome) { ... }
+    public function excluir($id) { ... }
+    public function listar() { ... }
+    public function listarId($id) { ... }
+    
+    // Operações de validação
+    public function validarNome($nome) { ... }
+    public function verificarUso($id) { ... }
+}
+```
+
+### InterpretacaoService
+```php
+class InterpretacaoService {
+    // Operações CRUD básicas
+    public function inserir($sonhoId, $interpretador, $texto) { ... }
+    public function alterar($id, $interpretador, $texto) { ... }
+    public function excluir($id) { ... }
+    public function listar() { ... }
+    public function listarId($id) { ... }
+    
+    // Operações específicas
+    public function listarPorSonho($sonhoId) { ... }
+    public function validarInterpretador($interpretador) { ... }
+}
+```
+
+## Fluxo de Dados entre Serviços
+
+### Exemplo: Criação de Sonho com Tags e Interpretação
+```
+SonhoService
+  ↓
+  ├─ Cria sonho
+  ↓
+  ├─ TagService
+  │   ↓
+  │   ├─ Valida tags
+  │   ↓
+  │   └─ Associa tags
+  ↓
+  └─ InterpretacaoService
+      ↓
+      ├─ Valida interpretação
+      ↓
+      └─ Cria interpretação
+```
+
+### Exemplo: Busca Completa de Sonho
+```
+SonhoService
+  ↓
+  ├─ Busca dados do sonho
+  ↓
+  ├─ TagService
+  │   ↓
+  │   └─ Busca tags associadas
+  ↓
+  └─ InterpretacaoService
+      ↓
+      └─ Busca interpretações
+```
+
 ## Responsabilidades Principais
 
 ### 1. Lógica de Negócio

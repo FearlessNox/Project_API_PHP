@@ -21,4 +21,18 @@ class Controller
             echo $json;
         }
     }
+
+    protected function getDados()
+    {
+        $dados = file_get_contents("php://input");
+        return json_decode($dados);
+    }
+
+    protected function retornar($dados, $status = 200)
+    {
+        http_response_code($status);
+        header("Content-Type: application/json");
+        echo json_encode($dados);
+        exit;
+    }
 }

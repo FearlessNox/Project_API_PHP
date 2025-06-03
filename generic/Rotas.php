@@ -10,29 +10,62 @@ class Rotas
     {
         // rotas para o acesso as chamadas
         $this->endpoints = [
-            "cliente" => new Acao([
-                Acao::POST => new Endpoint("Cliente", "inserir"),
-                Acao::GET => new Endpoint("Cliente", "listar")
+            "sonhos" => new Acao([
+                Acao::GET => new Endpoint("Sonho", "listar"),
+                Acao::POST => new Endpoint("Sonho", "inserir")
             ]),
-            "alunos" =>new Acao([
-               
-                Acao::GET => new Endpoint("Aluno", "teste")
+            "sonhos/{id}" => new Acao([
+                Acao::GET => new Endpoint("Sonho", "listarId"),
+                Acao::PUT => new Endpoint("Sonho", "alterar"),
+                Acao::DELETE => new Endpoint("Sonho", "excluir")
+            ]),
+            "sonhos/{id}/tags" => new Acao([
+                Acao::GET => new Endpoint("Sonho", "listarTags"),
+                Acao::POST => new Endpoint("Sonho", "adicionarTag"),
+                Acao::DELETE => new Endpoint("Sonho", "removerTag")
+            ]),
+            "tags" => new Acao([
+                Acao::GET => new Endpoint("Tag", "listar"),
+                Acao::POST => new Endpoint("Tag", "inserir")
+            ]),
+            "tags/{id}" => new Acao([
+                Acao::GET => new Endpoint("Tag", "listarId"),
+                Acao::PUT => new Endpoint("Tag", "alterar"),
+                Acao::DELETE => new Endpoint("Tag", "excluir")
             ])
-           
-
         ];
     }
 
     public function executar($rota)
     {
-        // verifica o array associativo se a rota existe
-        if (isset($this->endpoints[$rota])) {
-          
-            $endpoint = $this->endpoints[$rota];
-            $dados =$endpoint->executar();
-            $retorno = new Retorno();
-            $retorno ->dados = $dados;
-            return $retorno;
+        // Procura por parâmetros na rota
+        foreach ($this->endpoints as $pattern => $acao) {
+            $pattern = str_replace('/', '\/', $pattern);
+            $pattern = preg_replace('/\{([a-zA-Z]+)\}/', '(?P<$1>[^\/]+)', $pattern);
+            $pattern = '/^' . $pattern . '$/';
+
+            if (preg_match($pattern, $rota, $matches)) {
+                // Remove o parâmetro 'param' que vem do .htaccess
+                unset($matches[0]);
+                
+                // Cria um array associativo com os parâmetros
+                $parametros = [];
+                foreach ($matches as $key => $value) {
+                    if (is_string($key)) {
+                        $parametros[$key] = $value;
+                    }
+                }
+
+                // Cria uma nova instância de Acao com os parâmetros
+                $novaAcao = new Acao($acao->getEndpoint(), $parametros);
+                $dados = $novaAcao->executar();
+                
+                if ($dados !== false) {
+                    $retorno = new Retorno();
+                    $retorno->dados = $dados;
+                    return $retorno;
+                }
+            }
         }
 
         return null;

@@ -7,7 +7,7 @@ class MysqlSingleton{
     private static  $instance = null;
 
     private $conexao = null;
-    private $dsn = 'mysql:host=localhost;dbname=locadora';
+    private $dsn = 'mysql:host=localhost;dbname=banco_sonhos';
     private $usuario = 'root';
     private $senha = '';
 

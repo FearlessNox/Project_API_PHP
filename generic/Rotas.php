@@ -10,13 +10,6 @@ class Rotas
     {
         // rotas para o acesso as chamadas
         $this->endpoints = [
-            "cliente" => new Acao([
-                Acao::POST => new Endpoint("Cliente", "inserir"),
-                Acao::GET => new Endpoint("Cliente", "listar")
-            ]),
-            "alunos" => new Acao([
-                Acao::GET => new Endpoint("Aluno", "teste")
-            ]),
             "sonhos" => new Acao([
                 Acao::GET => new Endpoint("Sonho", "listar"),
                 Acao::POST => new Endpoint("Sonho", "inserir")
@@ -30,6 +23,15 @@ class Rotas
                 Acao::GET => new Endpoint("Sonho", "listarTags"),
                 Acao::POST => new Endpoint("Sonho", "adicionarTag"),
                 Acao::DELETE => new Endpoint("Sonho", "removerTag")
+            ]),
+            "tags" => new Acao([
+                Acao::GET => new Endpoint("Tag", "listar"),
+                Acao::POST => new Endpoint("Tag", "inserir")
+            ]),
+            "tags/{id}" => new Acao([
+                Acao::GET => new Endpoint("Tag", "listarId"),
+                Acao::PUT => new Endpoint("Tag", "alterar"),
+                Acao::DELETE => new Endpoint("Tag", "excluir")
             ])
         ];
     }

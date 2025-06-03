@@ -46,28 +46,28 @@ class Sonho extends Controller {
         $this->retornar($retorno);
     }
 
-    public function adicionarTag($sonho_id) {
+    public function listarTags($id) {
+        $retorno = $this->service->listarTags($id);
+        $this->retornar($retorno);
+    }
+
+    public function adicionarTag($id) {
         $dados = $this->getDados();
         if (!isset($dados->tag_id)) {
             $this->retornar(["erro" => "ID da tag é obrigatório"], 400);
             return;
         }
-        $retorno = $this->service->adicionarTag($sonho_id, $dados->tag_id);
+        $retorno = $this->service->adicionarTag($id, $dados->tag_id);
         $this->retornar($retorno);
     }
 
-    public function removerTag($sonho_id) {
+    public function removerTag($id) {
         $dados = $this->getDados();
         if (!isset($dados->tag_id)) {
             $this->retornar(["erro" => "ID da tag é obrigatório"], 400);
             return;
         }
-        $retorno = $this->service->removerTag($sonho_id, $dados->tag_id);
-        $this->retornar($retorno);
-    }
-
-    public function listarTags($sonho_id) {
-        $retorno = $this->service->listarTags($sonho_id);
+        $retorno = $this->service->removerTag($id, $dados->tag_id);
         $this->retornar($retorno);
     }
 } 

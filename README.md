@@ -16,6 +16,120 @@ Project_API_PHP/
 └── .htaccess      # Configuração de URL amigável
 ```
 
+## Arquitetura da API
+
+### Fluxo de Requisição
+```
+Cliente HTTP → .htaccess → index.php → Controller → Service → DAO → Banco de Dados
+```
+
+### Camadas da Aplicação
+
+1. **Controller (Camada de Apresentação)**
+   - Ponto de entrada para requisições HTTP
+   - Validação de dados de entrada
+   - Direcionamento para serviços apropriados
+   - Formatação de respostas
+   - Gerenciamento de autenticação/autorização
+
+2. **Service (Camada de Negócio)**
+   - Implementação das regras de negócio
+   - Coordenação entre diferentes DAOs
+   - Validações complexas
+   - Processamento de dados
+   - Lógica de negócio centralizada
+
+3. **DAO (Camada de Dados)**
+   - Abstração do acesso ao banco de dados
+   - Operações CRUD (Create, Read, Update, Delete)
+   - Queries e transações
+   - Mapeamento objeto-relacional
+
+### Componentes Principais
+
+1. **Front Controller (index.php)**
+   - Ponto de entrada único da aplicação
+   - Roteamento inicial
+   - Carregamento de dependências
+   - Tratamento de erros global
+
+2. **Autoload (generic/Autoload.php)**
+   - Carregamento automático de classes
+   - Eliminação de includes manuais
+   - Padrão PSR-4
+
+3. **URL Amigável (.htaccess)**
+   - Redirecionamento de requisições
+   - Configuração de rotas
+   - Segurança básica
+
+### Fluxo de Dados
+
+1. **Requisição HTTP**
+   ```
+   Cliente → .htaccess → index.php?param=endpoint
+   ```
+
+2. **Processamento**
+   ```
+   Controller → Validação → Service → Regras de Negócio → DAO → Banco de Dados
+   ```
+
+3. **Resposta**
+   ```
+   Banco de Dados → DAO → Service → Controller → Cliente (JSON)
+   ```
+
+### Características da Arquitetura
+
+1. **Separação de Responsabilidades**
+   - Cada camada tem função específica
+   - Baixo acoplamento entre componentes
+   - Alta coesão dentro das camadas
+
+2. **Segurança**
+   - Validação em múltiplas camadas
+   - Controle de acesso centralizado
+   - Sanitização de dados
+
+3. **Manutenibilidade**
+   - Código organizado e modular
+   - Fácil de estender
+   - Documentação clara
+
+4. **Escalabilidade**
+   - Componentes independentes
+   - Fácil adição de novas funcionalidades
+   - Baixo acoplamento
+
+### Exemplo de Fluxo Completo
+
+1. **Registro de Dados**
+   ```
+   POST /recurso
+   ↓
+   Controller valida dados
+   ↓
+   Service processa regras
+   ↓
+   DAO persiste dados
+   ↓
+   Resposta JSON
+   ```
+
+2. **Consulta de Dados**
+   ```
+   GET /recurso/{id}
+   ↓
+   Controller verifica permissões
+   ↓
+   Service coordena consultas
+   ↓
+   DAO busca dados
+   ↓
+   Resposta JSON formatada
+   ```
+
 ## Como Funciona
 
 ### Arquitetura
@@ -62,6 +176,41 @@ Exemplo:
 ```
 http://localhost/Project_API_PHP/usuario
 ```
+
+## Rotas da API
+
+### Sonhos
+- `GET /sonho` - Lista todos os sonhos
+- `GET /sonho/{id}` - Obtém um sonho específico
+- `POST /sonho` - Cria um novo sonho
+  - Body: `{ "conteudo": "texto do sonho" }`
+- `PUT /sonho/{id}` - Atualiza um sonho existente
+  - Body: `{ "conteudo": "novo texto do sonho" }`
+- `DELETE /sonho/{id}` - Remove um sonho
+- `GET /sonho/{id}/tags` - Lista as tags de um sonho
+- `POST /sonho/{id}/tag` - Adiciona uma tag ao sonho
+  - Body: `{ "tag_id": 1 }`
+- `DELETE /sonho/{id}/tag` - Remove uma tag do sonho
+  - Body: `{ "tag_id": 1 }`
+
+### Tags
+- `GET /tag` - Lista todas as tags
+- `GET /tag/{id}` - Obtém uma tag específica
+- `POST /tag` - Cria uma nova tag
+  - Body: `{ "nome": "nome da tag" }`
+- `PUT /tag/{id}` - Atualiza uma tag existente
+  - Body: `{ "nome": "novo nome da tag" }`
+- `DELETE /tag/{id}` - Remove uma tag
+
+### Interpretações
+- `GET /interpretacao` - Lista todas as interpretações
+- `GET /interpretacao/{id}` - Obtém uma interpretação específica
+- `GET /interpretacao/sonho/{id}` - Lista interpretações de um sonho específico
+- `POST /interpretacao` - Cria uma nova interpretação
+  - Body: `{ "sonho_id": 1, "interpretador": "nome", "texto": "interpretação" }`
+- `PUT /interpretacao/{id}` - Atualiza uma interpretação existente
+  - Body: `{ "interpretador": "nome", "texto": "nova interpretação" }`
+- `DELETE /interpretacao/{id}` - Remove uma interpretação
 
 ## Segurança
 

@@ -31,12 +31,37 @@ class AuthService {
         ];
     }
 
+    public function register($nome, $email, $senha) {
+        // Verifica se o email já está em uso
+        $usuarioExistente = $this->usuarioDAO->buscarPorEmail($email);
+        if ($usuarioExistente) {
+            throw new \Exception("Email já está em uso");
+        }
+
+        // Cria o novo usuário
+        $this->usuarioDAO->criar($nome, $email, $senha);
+
+        // Busca o usuário recém-criado
+        $usuario = $this->usuarioDAO->buscarPorEmail($email);
+        
+        // Gera o token de autenticação
+        $token = $this->jwtService->generateToken($usuario['id'], $usuario['email']);
+        
+        return [
+            'token' => $token,
+            'user' => [
+                'id' => $usuario['id'],
+                'email' => $usuario['email']
+            ]
+        ];
+    }
+
     public function validarToken($token) {
         try {
             $decoded = JWT::decode($token, $this->chaveSecreta, ['HS256']);
             return (array) $decoded;
-        } catch (Exception $e) {
-            throw new Exception("Token inválido");
+        } catch (\Exception $e) {
+            throw new \Exception("Token inválido");
         }
     }
 } 

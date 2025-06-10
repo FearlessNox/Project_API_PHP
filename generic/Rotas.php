@@ -13,6 +13,9 @@ class Rotas
             "login" => new Acao([
                 Acao::POST => new Endpoint("LoginController", "login")
             ]),
+            "register" => new Acao([
+                Acao::POST => new Endpoint("LoginController", "register")
+            ]),
             "sonhos/{id}/interpretacoes" => new Acao([
                 Acao::GET => new Endpoint("Interpretacao", "listarPorSonho")
             ]),
@@ -53,13 +56,21 @@ class Rotas
 
     public function executar($rota)
     {
+        // Log para debug
+        error_log("Rota recebida: " . $rota);
+        error_log("Método HTTP: " . $_SERVER['REQUEST_METHOD']);
+
         // Procura por parâmetros na rota
         foreach ($this->endpoints as $pattern => $acao) {
             $pattern = str_replace('/', '\/', $pattern);
             $pattern = preg_replace('/\{([a-zA-Z]+)\}/', '(?P<$1>[^\/]+)', $pattern);
             $pattern = '/^' . $pattern . '$/';
 
+            error_log("Tentando padrão: " . $pattern);
+
             if (preg_match($pattern, $rota, $matches)) {
+                error_log("Padrão encontrado! Matches: " . print_r($matches, true));
+                
                 // Remove o parâmetro 'param' que vem do .htaccess
                 unset($matches[0]);
                 
@@ -83,6 +94,7 @@ class Rotas
             }
         }
 
+        error_log("Nenhuma rota encontrada para: " . $rota);
         return null;
     }
 }

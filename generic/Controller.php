@@ -5,7 +5,7 @@ namespace generic;
 class Controller
 {
     private $rotas = null;
-    private $publicRoutes = ['login'];
+    private $publicRoutes = ['login', 'register'];
 
     public function __construct()
     {

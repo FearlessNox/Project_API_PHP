@@ -19,7 +19,14 @@
 									"name": "sonhos/id/tags",
 									"request": {
 										"auth": {
-											"type": "noauth"
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{TokenJWT}}",
+													"type": "string"
+												}
+											]
 										},
 										"method": "POST",
 										"header": [
@@ -54,6 +61,16 @@
 								{
 									"name": "sonhos/id/tags",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{TokenJWT}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
 										"header": [],
 										"url": {
@@ -77,15 +94,25 @@
 								{
 									"name": "sonhos/id/interpretacoes",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{TokenJWT}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{PHP}}sonhos/2/interpretacoes",
+											"raw": "{{PHP}}sonhos/1/interpretacoes",
 											"host": [
 												"{{PHP}}sonhos"
 											],
 											"path": [
-												"2",
+												"1",
 												"interpretacoes"
 											]
 										}
@@ -97,6 +124,16 @@
 						{
 							"name": "sonhos/id",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{TokenJWT}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -114,15 +151,25 @@
 						{
 							"name": "sonhos/id",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{TokenJWT}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{PHP}}sonhos/3",
+									"raw": "{{PHP}}sonhos/2",
 									"host": [
 										"{{PHP}}sonhos"
 									],
 									"path": [
-										"3"
+										"2"
 									]
 								}
 							},
@@ -132,7 +179,14 @@
 							"name": "sonhos/id",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{TokenJWT}}",
+											"type": "string"
+										}
+									]
 								},
 								"method": "PUT",
 								"header": [
@@ -152,12 +206,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{PHP}}sonhos/2",
+									"raw": "{{PHP}}sonhos/1",
 									"host": [
 										"{{PHP}}sonhos"
 									],
 									"path": [
-										"2"
+										"1"
 									]
 								}
 							},
@@ -168,8 +222,25 @@
 				{
 					"name": "Listar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "{{PHP}}sonhos",
 							"host": [
@@ -183,7 +254,14 @@
 					"name": "Inserir",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [
@@ -220,7 +298,14 @@
 					"name": "tags",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [
@@ -232,7 +317,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nome\": \"Sonhos\"\r\n}",
+							"raw": "{\r\n  \"nome\": \"Sonho6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -252,7 +337,14 @@
 					"name": "tags/id",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [
@@ -286,6 +378,16 @@
 				{
 					"name": "tags",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -300,15 +402,25 @@
 				{
 					"name": "tags/id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{PHP}}tags/1",
+							"raw": "{{PHP}}tags/2",
 							"host": [
 								"{{PHP}}tags"
 							],
 							"path": [
-								"1"
+								"2"
 							]
 						}
 					},
@@ -317,15 +429,25 @@
 				{
 					"name": "tags/id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{PHP}}tags/3",
+							"raw": "{{PHP}}tags/5",
 							"host": [
 								"{{PHP}}tags"
 							],
 							"path": [
-								"3"
+								"5"
 							]
 						}
 					},
@@ -342,15 +464,25 @@
 						{
 							"name": "interpretacoes/id",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{TokenJWT}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{PHP}}interpretacoes/7",
+									"raw": "{{PHP}}interpretacoes/1",
 									"host": [
 										"{{PHP}}interpretacoes"
 									],
 									"path": [
-										"7"
+										"1"
 									]
 								}
 							},
@@ -359,15 +491,25 @@
 						{
 							"name": "interpretacoes/id Copy",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{TokenJWT}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{PHP}}interpretacoes/6",
+									"raw": "{{PHP}}interpretacoes/9",
 									"host": [
 										"{{PHP}}interpretacoes"
 									],
 									"path": [
-										"6"
+										"9"
 									]
 								}
 							},
@@ -377,7 +519,14 @@
 							"name": "interpretacoes/id",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{TokenJWT}}",
+											"type": "string"
+										}
+									]
 								},
 								"method": "PUT",
 								"header": [
@@ -397,12 +546,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{PHP}}interpretacoes/7",
+									"raw": "{{PHP}}interpretacoes/2",
 									"host": [
 										"{{PHP}}interpretacoes"
 									],
 									"path": [
-										"7"
+										"2"
 									]
 								}
 							},
@@ -414,7 +563,14 @@
 					"name": "interpretacoes",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [
@@ -426,7 +582,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"sonho_id\": 2,\r\n    \"interpretador\": \"Dr. Silva\",\r\n    \"texto\": \"Este sonho representa uma busca por conhecimento e crescimento pessoal\"\r\n}",
+							"raw": "{\r\n    \"sonho_id\": 1,\r\n    \"interpretador\": \"Dr. Silva\",\r\n    \"texto\": \"Este sonho representa uma busca por conhecimento e crescimento pessoal\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -445,12 +601,87 @@
 				{
 					"name": "interpretacoes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TokenJWT}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": "{{PHP}}interpretacoes",
 							"host": [
 								"{{PHP}}interpretacoes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Seu Nome\",\r\n    \"email\": \"seu@email.com\",\r\n    \"senha\": \"suasenha\"\r\n}"
+						},
+						"url": {
+							"raw": "{{PHP}}/login",
+							"host": [
+								"{{PHP}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Seu Nome\",\r\n    \"email\": \"seu@email.com\",\r\n    \"senha\": \"suasenha\"\r\n}"
+						},
+						"url": {
+							"raw": "{{PHP}}/register",
+							"host": [
+								"{{PHP}}"
+							],
+							"path": [
+								"register"
 							]
 						}
 					},

@@ -144,6 +144,13 @@ class Sonho extends AuthController {
             }
             
             $retorno = $this->service->listarInterpretacoes($id);
+            if (empty($retorno)) {
+                $this->retornar([
+                    "erro" => "Nenhuma interpretacao encontrada para este sonho",
+                    "dado" => null
+                ], 404);
+                return;
+            }
             $this->retornar($retorno);
         } catch (\Exception $e) {
             $this->retornar([

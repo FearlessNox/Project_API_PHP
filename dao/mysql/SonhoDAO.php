@@ -9,7 +9,8 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
     public function listar() {
         try {
             $sql = "SELECT id, conteudo, criado_em FROM sonhos ORDER BY criado_em DESC";
-            return $this->banco->executar($sql);
+            $resultado = $this->banco->executar($sql);
+            return empty($resultado) ? [] : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao listar sonhos no banco de dados");
         }
@@ -19,7 +20,8 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
         try {
             $sql = "SELECT id, conteudo, criado_em FROM sonhos WHERE id = :id";
             $param = [":id" => $id];
-            return $this->banco->executar($sql, $param);
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? null : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao buscar sonho no banco de dados");
         }
@@ -29,7 +31,8 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
         try {
             $sql = "INSERT INTO sonhos (conteudo) VALUES (:conteudo)";
             $param = [":conteudo" => $conteudo];
-            return $this->banco->executar($sql, $param);
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? null : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao inserir sonho no banco de dados");
         }
@@ -42,7 +45,8 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
                 ":id" => $id,
                 ":conteudo" => $conteudo
             ];
-            return $this->banco->executar($sql, $param);
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? null : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao alterar sonho no banco de dados");
         }
@@ -52,7 +56,8 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
         try {
             $sql = "DELETE FROM sonhos WHERE id = :id";
             $param = [":id" => $id];
-            return $this->banco->executar($sql, $param);
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? null : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao excluir sonho no banco de dados");
         }
@@ -65,7 +70,8 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
                 ":sonho_id" => $sonho_id,
                 ":tag_id" => $tag_id
             ];
-            return $this->banco->executar($sql, $param);
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? null : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao adicionar tag no banco de dados");
         }
@@ -78,7 +84,8 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
                 ":sonho_id" => $sonho_id,
                 ":tag_id" => $tag_id
             ];
-            return $this->banco->executar($sql, $param);
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? null : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao remover tag no banco de dados");
         }
@@ -91,9 +98,24 @@ class SonhoDAO extends MysqlFactory implements ISonhoDAO {
                     INNER JOIN sonho_tag st ON t.id = st.tag_id 
                     WHERE st.sonho_id = :sonho_id";
             $param = [":sonho_id" => $sonho_id];
-            return $this->banco->executar($sql, $param);
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? [] : $resultado;
         } catch (\Exception $e) {
             throw new \Exception("Erro ao listar tags no banco de dados");
+        }
+    }
+
+    public function listarInterpretacoes($sonho_id) {
+        try {
+            $sql = "SELECT id, sonho_id, interpretador, texto, criado_em 
+                    FROM interpretacoes 
+                    WHERE sonho_id = :sonho_id 
+                    ORDER BY criado_em DESC";
+            $param = [":sonho_id" => $sonho_id];
+            $resultado = $this->banco->executar($sql, $param);
+            return empty($resultado) ? [] : $resultado;
+        } catch (\Exception $e) {
+            throw new \Exception("Erro ao listar interpretacoes no banco de dados");
         }
     }
 } 

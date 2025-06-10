@@ -10,4 +10,5 @@ interface ISonhoDAO {
     public function adicionarTag($sonho_id, $tag_id);
     public function removerTag($sonho_id, $tag_id);
     public function listarTags($sonho_id);
+    public function listarInterpretacoes($sonho_id);
 } 

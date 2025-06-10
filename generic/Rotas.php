@@ -13,6 +13,9 @@ class Rotas
             "login" => new Acao([
                 Acao::POST => new Endpoint("LoginController", "login")
             ]),
+            "register" => new Acao([
+                Acao::POST => new Endpoint("LoginController", "register")
+            ]),
             "sonhos/{id}/interpretacoes" => new Acao([
                 Acao::GET => new Endpoint("Interpretacao", "listarPorSonho")
             ]),

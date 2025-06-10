@@ -5,6 +5,8 @@ namespace generic;
 class Controller
 {
     private $rotas = null;
+    private $publicRoutes = ['login'];
+
     public function __construct()
     {
         $this->rotas = new Rotas();
@@ -12,7 +14,12 @@ class Controller
 
     public function verificarChamadas($rota)
     {
-        
+        // Check if the route is public
+        if (!in_array($rota, $this->publicRoutes)) {
+            // Validate token for protected routes
+            AuthMiddleware::validateToken();
+        }
+
         $retorno = $this->rotas->executar($rota);
         //se existe um retorno irá devolver em formato json
         if ($retorno) {

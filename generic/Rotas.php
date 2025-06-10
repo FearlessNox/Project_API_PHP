@@ -10,6 +10,9 @@ class Rotas
     {
         // rotas para o acesso as chamadas
         $this->endpoints = [
+            "login" => new Acao([
+                Acao::POST => new Endpoint("LoginController", "login")
+            ]),
             "sonhos/{id}/interpretacoes" => new Acao([
                 Acao::GET => new Endpoint("Interpretacao", "listarPorSonho")
             ]),

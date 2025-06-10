@@ -1,5 +1,8 @@
 <?php
+// Removendo a dependência do Composer
+// require_once __DIR__ . '/vendor/autoload.php';
 include "generic/Autoload.php";
+include "lib/JWT.php";
 
 use generic\Controller;
 // entrada de dados

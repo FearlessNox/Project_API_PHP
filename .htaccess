@@ -1,4 +1,13 @@
-RewriteEngine on
+RewriteEngine On
+RewriteBase /Project_API_PHP/
+
+# Se o arquivo ou diretório não existe
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redireciona tudo para o index.php
 RewriteRule ^(.*)$ index.php?param=$1 [L,QSA]
+
+# Força HTTPS (opcional, descomente se necessário)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

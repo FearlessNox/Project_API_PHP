@@ -3,7 +3,6 @@
 namespace service;
 
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
 class JWTService {
     private static $secretKey = "sua_chave_secreta"; // Change this to a secure secret key
@@ -28,7 +27,7 @@ class JWTService {
 
     public static function validateToken($token) {
         try {
-            $decoded = JWT::decode($token, new Key(self::$secretKey, self::$algorithm));
+            $decoded = JWT::decode($token, self::$secretKey, [self::$algorithm]);
             return (array) $decoded;
         } catch (\Exception $e) {
             return false;

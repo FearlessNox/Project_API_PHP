@@ -60,8 +60,8 @@ class AuthService {
         try {
             $decoded = JWT::decode($token, $this->chaveSecreta, ['HS256']);
             return (array) $decoded;
-        } catch (Exception $e) {
-            throw new Exception("Token inválido");
+        } catch (\Exception $e) {
+            throw new \Exception("Token inválido");
         }
     }
 } 

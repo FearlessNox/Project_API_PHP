@@ -1,13 +1,14 @@
 <?php
 namespace controller;
 
-use generic\Controller;
+use generic\AuthController;
 use service\SonhoService;
 
-class Sonho extends Controller {
+class Sonho extends AuthController {
     private $service;
 
     public function __construct() {
+        parent::__construct();
         $this->service = new SonhoService();
     }
 
@@ -24,7 +25,7 @@ class Sonho extends Controller {
     public function inserir() {
         $dados = $this->getDados();
         if (!isset($dados->conteudo)) {
-            $this->retornar(["erro" => "Conteúdo do sonho é obrigatório"], 400);
+            $this->retornar(["erro" => "Conteudo do sonho e obrigatorio"], 400);
             return;
         }
         $retorno = $this->service->inserir($dados->conteudo);
@@ -34,7 +35,7 @@ class Sonho extends Controller {
     public function alterar($id) {
         $dados = $this->getDados();
         if (!isset($dados->conteudo)) {
-            $this->retornar(["erro" => "Conteúdo do sonho é obrigatório"], 400);
+            $this->retornar(["erro" => "Conteudo do sonho e obrigatorio"], 400);
             return;
         }
         $retorno = $this->service->alterar($id, $dados->conteudo);
@@ -54,7 +55,7 @@ class Sonho extends Controller {
     public function adicionarTag($id) {
         $dados = $this->getDados();
         if (!isset($dados->tag_id)) {
-            $this->retornar(["erro" => "ID da tag é obrigatório"], 400);
+            $this->retornar(["erro" => "ID da tag e obrigatorio"], 400);
             return;
         }
         $retorno = $this->service->adicionarTag($id, $dados->tag_id);
@@ -64,7 +65,7 @@ class Sonho extends Controller {
     public function removerTag($id) {
         $dados = $this->getDados();
         if (!isset($dados->tag_id)) {
-            $this->retornar(["erro" => "ID da tag é obrigatório"], 400);
+            $this->retornar(["erro" => "ID da tag e obrigatorio"], 400);
             return;
         }
         $retorno = $this->service->removerTag($id, $dados->tag_id);

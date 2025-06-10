@@ -15,19 +15,20 @@ class SonhoService {
     }
 
     public function listarId($id) {
-        return $this->dao->listarId($id);
+        $resultado = $this->dao->listarId($id);
+        return $resultado ? $resultado[0] : null;
     }
 
     public function inserir($conteudo) {
         if (empty($conteudo)) {
-            throw new \Exception("Conteúdo do sonho não pode ser vazio");
+            throw new \Exception("Conteudo do sonho nao pode ser vazio");
         }
         return $this->dao->inserir($conteudo);
     }
 
     public function alterar($id, $conteudo) {
         if (empty($conteudo)) {
-            throw new \Exception("Conteúdo do sonho não pode ser vazio");
+            throw new \Exception("Conteudo do sonho nao pode ser vazio");
         }
         return $this->dao->alterar($id, $conteudo);
     }
